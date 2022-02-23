@@ -1,0 +1,6 @@
+@import "./Utilities/colors.scss";
+.container {
+  height: 100vh;
+  display: flex;
+  background-color: #{$beige-secondary};
+}
