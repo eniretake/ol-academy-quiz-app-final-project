@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Rings } from "react-loader-spinner";
 import { Progress } from "reactstrap";
 import { fetchData } from "../../Services/fetchData";
+import { Boolean } from "../QuestionTypes/Boolean/Boolean";
+import { Multiple } from "../QuestionTypes/Multiple/Multiple";
 import { Single } from "../QuestionTypes/Single/Single";
 import "./Quiz.scss";
 
@@ -10,15 +12,6 @@ const Quiz = () => {
   const [currentQuestionId, setCurrentQuestionId] = useState(0);
   const [score, setScore] = useState(0);
 
-  const answerFilteredWithId = (id) => {
-    let index = null;
-    answers.find((answer, i) => {
-      if (answer.id === id) {
-        index = i;
-      }
-      return index;
-    });
-  };
   const handleNext = () => {
     setCurrentQuestionId(currentQuestionId + 1);
   };
@@ -37,7 +30,7 @@ const Quiz = () => {
 
   const { questions, answers } = data;
 
-  return !questions ? (
+  return !questions.length ? (
     <div className="page">
       <Rings color="#FFB03B" height={150} width={150} />
     </div>
@@ -53,19 +46,36 @@ const Quiz = () => {
             newScore={handleSettingScore}
           ></Single>
         ) : questions[currentQuestionId].type === "multiple" ? (
-          <p>multiple</p>
+          <Multiple
+            question={questions[currentQuestionId]}
+            answer={answers[currentQuestionId]}
+            onClick={handleNext}
+            score={score}
+            newScore={handleSettingScore}
+          ></Multiple>
         ) : (
-          <p>bool</p>
+          <Boolean
+            question={questions[currentQuestionId]}
+            answer={answers[currentQuestionId]}
+            onClick={handleNext}
+            score={score}
+            newScore={handleSettingScore}
+          ></Boolean>
         )
       ) : (
-        <p>try again</p>
+        <div>
+          <p>
+            {score} / {questions.length}
+          </p>
+          <p>try again</p>
+        </div>
       )}
       <div className="progress-bar-container">
         <Progress
           color="warning"
-          value={((currentQuestionId + 1) / questions.length) * 100}
+          value={(currentQuestionId / questions.length) * 100}
         >
-          {currentQuestionId + 1}/{questions.length}
+          {currentQuestionId}/{questions.length}
         </Progress>
       </div>
     </div>
