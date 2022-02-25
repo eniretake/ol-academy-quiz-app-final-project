@@ -1,0 +1,66 @@
+@import "../../../Utilities/mixins.scss";
+
+button {
+  @include button;
+  background-color: #{$brown};
+}
+
+.question-container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 55%;
+  width: 60%;
+  justify-content: space-between;
+  margin: 0 auto;
+
+  .question-content {
+    display: flex;
+    flex-direction: column;
+    height: 72%;
+    width: 100%;
+    justify-content: space-between;
+    margin: 0 auto;
+    text-align: center;
+
+    .answer-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 10px 5%;
+      align-items: center;
+
+      .single-option {
+        padding: 10px 2px;
+        height: 100%;
+        display: table;
+        border: 1px solid #{$gold};
+        border-radius: 20px;
+
+        &:hover,
+        &.active {
+          background-color: #{$gold};
+          color: white;
+          cursor: pointer;
+        }
+
+        &.correct {
+          background-color: #{$green};
+          color: white;
+          border-color: #{$green};
+        }
+        &.wrong {
+          background-color: #{$brown};
+          border-color: #{$brown};
+          color: white;
+        }
+      }
+
+      span {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+  }
+}
