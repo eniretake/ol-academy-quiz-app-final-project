@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Rings } from "react-loader-spinner";
 import { Progress } from "reactstrap";
 import { fetchData } from "../../Services/fetchData";
 import { Boolean } from "../QuestionTypes/Boolean/Boolean";
 import { Multiple } from "../QuestionTypes/Multiple/Multiple";
 import { Single } from "../QuestionTypes/Single/Single";
+import TryAgain from "../TryAgain/TryAgain";
 import "./Quiz.scss";
 
 const Quiz = () => {
@@ -63,11 +65,14 @@ const Quiz = () => {
           ></Boolean>
         )
       ) : (
-        <div>
-          <p>
-            {score} / {questions.length}
-          </p>
-          <p>try again</p>
+        <div className="final-page">
+          <div className="score-container">
+            <h3>Total score:</h3>
+            <h1>
+              {score} / {questions.length}
+            </h1>
+          </div>
+          <TryAgain value={score} total={questions.length}/>
         </div>
       )}
       <div className="progress-bar-container">
