@@ -1,0 +1,44 @@
+@import "../../Utilities/mixins.scss";
+
+.history-table {
+  width: 100%;
+
+  h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #{$red};
+    text-align: center;
+    padding: 20px 0px;
+  }
+  table {
+    width: 50%;
+    margin: 0 auto;
+
+    thead {
+      border-top: 2px solid #{$gold};
+      border-bottom: 2px solid #{$gold};
+      th {
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px;
+        color: #{$brown};
+        border: 1px solid #{$gold};
+      }
+    }
+    tbody {
+      tr {
+        border-bottom: 1px solid #{$gold};
+        color: #{$red};
+        text-align: center;
+        td {
+          padding: 10px;
+          border: 1px solid #{$gold};
+        }
+        th {
+          padding-left: 10px;
+          border: 1px solid #{$gold};
+        }
+      }
+    }
+  }
+}

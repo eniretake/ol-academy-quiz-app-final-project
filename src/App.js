@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 
 import "./App.scss";
+import History from "./Components/History/History";
 import Home from "./Components/Home/Home";
 import Quiz from "./Components/Quiz/Quiz";
 
@@ -10,6 +11,10 @@ const AppRoutes = () => {
     {
       path: "/quiz",
       element: <Quiz />,
+    },
+    {
+      path: "/history",
+      element: <History />,
     },
   ]);
   return routes;
