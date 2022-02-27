@@ -12,7 +12,7 @@ const Home = () => {
       : null;
 
   return (
-    <div className="page">
+    <div className="page height-vh">
       <h1>QUIZ TIME</h1>
       {lastAttempt !== null && (
         <h5>

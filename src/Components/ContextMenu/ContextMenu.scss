@@ -1,0 +1,28 @@
+@import "../../Utilities/colors.scss";
+.menu {
+  position: absolute;
+  background-color: #ee3625e0;
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 2px 15px 5px;
+}
+
+.delete-button {
+  position: relative;
+  transition: all 200ms;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: whitesmoke;
+
+  &:hover {
+    cursor: pointer;
+    color: #000;
+  }
+
+  .delete-text {
+    font-weight: 400;
+    font-size: 15px;
+    padding-left: 5px;
+  }
+}

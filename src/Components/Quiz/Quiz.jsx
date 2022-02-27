@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Rings } from "react-loader-spinner";
 import { Progress } from "reactstrap";
 import { fetchData } from "../../Services/fetchData";
@@ -33,11 +32,11 @@ const Quiz = () => {
   const { questions, answers } = data;
 
   return !questions.length ? (
-    <div className="page">
+    <div className="page height-vh">
       <Rings color="#FFB03B" height={150} width={150} />
     </div>
   ) : (
-    <div className="page">
+    <div className="page height-vh">
       {currentQuestionId < questions.length ? (
         questions[currentQuestionId].type === "single" ? (
           <Single

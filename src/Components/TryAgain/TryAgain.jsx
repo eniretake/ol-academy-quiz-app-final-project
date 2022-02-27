@@ -80,7 +80,7 @@ const TryAgain = (props) => {
           <div className="popup" ref={popupRef}>
             <h4>Do you want to save this attempt?</h4>
             <span className="close" onClick={closePopup}>
-              &times;
+              &#x2717;
             </span>
             <div className="buttons-wrapper popup-buttons">
               <Link to="/" className="btn-link">
