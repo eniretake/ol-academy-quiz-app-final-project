@@ -21,22 +21,53 @@ const Quiz = () => {
     setScore(newScore);
   };
 
+  const setDataWithExpiry = (key, value, ttl) => {
+    const now = new Date();
+    const item = {
+      value: value,
+      expiry: now.getTime() + ttl,
+    };
+    localStorage.setItem(key, JSON.stringify(item));
+  };
+  const getDataWithExpiry = (key) => {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) {
+      return null;
+    }
+    const item = JSON.parse(itemStr);
+    const now = new Date();
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return item.value;
+  };
+
   useEffect(() => {
     const getData = async () => {
       const tempData = await fetchData();
-      setData({ questions: tempData.questions, answers: tempData.answers });
+      setDataWithExpiry("data", tempData, 600000);
+      setData({
+        questions: getDataWithExpiry("data").questions,
+        answers: getDataWithExpiry("data").answers,
+      });
     };
-    getData();
+    getDataWithExpiry("data")
+      ? setData({
+          questions: getDataWithExpiry("data").questions,
+          answers: getDataWithExpiry("data").answers,
+        })
+      : getData();
   }, []);
 
   const { questions, answers } = data;
 
   return !questions.length ? (
-    <div className="page height-vh">
+    <div className="page">
       <Rings color="#FFB03B" height={150} width={150} />
     </div>
   ) : (
-    <div className="page height-vh">
+    <div className="page">
       {currentQuestionId < questions.length ? (
         questions[currentQuestionId].type === "single" ? (
           <Single
@@ -71,7 +102,7 @@ const Quiz = () => {
               {score} / {questions.length}
             </h1>
           </div>
-          <TryAgain value={score} total={questions.length}/>
+          <TryAgain value={score} total={questions.length} />
         </div>
       )}
       <div className="progress-bar-container">

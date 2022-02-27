@@ -12,8 +12,8 @@ const Home = () => {
       : null;
 
   return (
-    <div className="page height-vh">
-      <h1>QUIZ TIME</h1>
+    <div className="page">
+      <h1>TRIVIA QUIZ</h1>
       {lastAttempt !== null && (
         <h5>
           last score:{"  "}
@@ -27,7 +27,7 @@ const Home = () => {
       )}
       <div className="buttons-wrapper">
         <Link to="quiz" className="btn-link">
-          <button>START QUIZ</button>
+          <button> START</button>
         </Link>
         <Link to="history" className="btn-link">
           <button className="btn-history">HISTORY</button>
