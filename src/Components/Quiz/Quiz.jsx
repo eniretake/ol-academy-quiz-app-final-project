@@ -7,6 +7,11 @@ import { Multiple } from "../QuestionTypes/Multiple/Multiple";
 import { Single } from "../QuestionTypes/Single/Single";
 import TryAgain from "../TryAgain/TryAgain";
 import "./Quiz.scss";
+import {
+  setDataWithExpiry,
+  getDataWithExpiry,
+  localData
+} from "../../Utilities/Variables";
 
 const Quiz = () => {
   const [data, setData] = useState({ questions: [], answers: [] });
@@ -21,31 +26,10 @@ const Quiz = () => {
     setScore(newScore);
   };
 
-  const setDataWithExpiry = (key, value, ttl) => {
-    const now = new Date();
-    const item = {
-      value: value,
-      expiry: now.getTime() + ttl,
-    };
-    localStorage.setItem(key, JSON.stringify(item));
-  };
-  const getDataWithExpiry = (key) => {
-    const itemStr = localStorage.getItem(key);
-    if (!itemStr) {
-      return null;
-    }
-    const item = JSON.parse(itemStr);
-    const now = new Date();
-    if (now.getTime() > item.expiry) {
-      localStorage.removeItem(key);
-      return null;
-    }
-    return item.value;
-  };
-
   useEffect(() => {
     const getData = async () => {
-      const tempData = await fetchData();
+      // const tempData = await fetchData();
+      const tempData = localData;
       setDataWithExpiry("data", tempData, 600000);
       setData({
         questions: getDataWithExpiry("data").questions,
