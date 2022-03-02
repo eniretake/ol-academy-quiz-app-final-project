@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Rings } from "react-loader-spinner";
 import { Progress } from "reactstrap";
-import { fetchData } from "../../Services/fetchData";
+// import { fetchData } from "../../Services/fetchData";
 import { Boolean } from "../QuestionTypes/Boolean/Boolean";
 import { Multiple } from "../QuestionTypes/Multiple/Multiple";
 import { Single } from "../QuestionTypes/Single/Single";
